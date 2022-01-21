@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversor-temperatura-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: site-temperatura
+  template:
+    metadata:
+      labels:
+        app: site-temperatura
+    spec:
+      containers:
+        - name: site-temperatura
+          image: leandroaurelio/conversao-temperatura:v1
+          ports:
+            - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: conversor-temperatura-service
+spec:
+  selector:
+    app: site-temperatura
+  ports:
+  - port: 80
+    nodePort: 30005
+  type: NodePort

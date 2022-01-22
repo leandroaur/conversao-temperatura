@@ -46,4 +46,4 @@ jobs:
         with:
           images: leandroaurelio/conversao-temperatura:v${{ github.run_number}}
           manifests: |
-            k8s/deployment.yaml
+            deployment.yaml

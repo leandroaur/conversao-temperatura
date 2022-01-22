@@ -25,7 +25,7 @@ jobs:
           no-cache: true
           tags: |
             leandroaurelio/conversao-temperatura:latest
-            leandroaurelio/conversao-temperatura:v${{ github.run_number}}
+            leandroaurelio/conversao-temperatura:${{ github.run_number}}
           
           
   CD:
@@ -44,6 +44,6 @@ jobs:
       - name: Deploy to Kubernetes cluster
         uses: Azure/k8s-deploy@v1.5
         with:
-          images: leandroaurelio/conversao-temperatura:v${{ github.run_number}}
+          images: leandroaurelio/conversao-temperatura:${{ github.run_number}}
           manifests: |
             deployment.yaml

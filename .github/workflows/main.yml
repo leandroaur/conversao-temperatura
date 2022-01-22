@@ -1,0 +1,31 @@
+name: CI-CD
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Docker Login
+        uses: docker/login-action@v1.12.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USER}}
+          password: ${{ secrets.DOCKERHUB_PWD}}
+          
+      - name: Docker Build and Push
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: ./src
+          no-cache: true
+          tags: |
+            leandroaurelio/conversao-temperatura:latest
+            leandroaurelio/conversao-temperatura:v${{ github.run_number}}
+            
+          
+          

@@ -40,3 +40,10 @@ jobs:
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.K8S_CONFIG_RANCHER }}
+
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v1.5
+        with:
+          images: leandroaurelio/conversao-temperatura:v${{ github.run_number}}
+          manifests: |
+            k8s/deployment.yaml

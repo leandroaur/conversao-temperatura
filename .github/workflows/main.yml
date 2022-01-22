@@ -26,6 +26,18 @@ jobs:
           tags: |
             leandroaurelio/conversao-temperatura:latest
             leandroaurelio/conversao-temperatura:v${{ github.run_number}}
-            
           
+          
+  CD:
+    runs-on: ubuntu-latest
+    needs: [CI]
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Kubernetes Set Context
+        uses: Azure/k8s-set-context@v2
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.K8S_CONFIG_RANCHER }}
           

@@ -26,5 +26,5 @@ jobs:
           no-cache: true
           tags: |
             leandroaurelio/conversao-temperatura:latest
-            leandroaurelio/conversao-temperatura:v{{ github.run_number }}
+            leandroaurelio/conversao-temperatura:v${{ github.run_number }}
     

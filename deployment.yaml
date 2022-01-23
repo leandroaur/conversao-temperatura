@@ -28,6 +28,7 @@ spec:
   selector:
     app: site-temperatura
   ports:
-  - port: 8080
+  - port: 80
+    targetPort: 8080
 #    nodePort: 30005
   type: LoadBalancer

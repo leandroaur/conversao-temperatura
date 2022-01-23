@@ -35,6 +35,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: google-github-actions/auth@v0.4.0
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+          
+            
+      
       - name: Kubernetes Set Context
         uses: Azure/k8s-set-context@v2
         with:

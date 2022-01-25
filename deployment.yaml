@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: conversor-temperatura-deploy
 spec:
-  replicas: 2
+  replicas: 8
   selector:
     matchLabels:
       app: site-temperatura

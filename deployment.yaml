@@ -30,5 +30,28 @@ spec:
   ports:
   - port: 80
     targetPort: 8080
+    tier: frontend #adicionado recentemente
 #    nodePort: 30005
-  type: LoadBalancer
+#  type: LoadBalancer
+  
+---
+
+apiVersion: networking.k8s.io/v1 #extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: site-temperatura
+  name: site-temperatura-web-ui
+spec:
+  rules:
+  - host: site-temperatura.100.86.25.28.nip.io #wordpress.leandroaurelio.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: site-temperatura
+            port: 
+              number: 80
+

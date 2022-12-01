@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: site-temperatura
-          image: leandroaurelio/conversao-temperatura:arm
+          image: leandroaurelio/conversor-temperatura:arm
           ports:
             - containerPort: 8080
 

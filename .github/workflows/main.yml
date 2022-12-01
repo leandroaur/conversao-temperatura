@@ -18,16 +18,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PWD }}
           
-      - name: Docker Build and Push
-        uses: docker/build-push-action@v2.7.0
-        with:
-          context: ./src
-          push: true
-          no-cache: true
-          tags: |
-            leandroaurelio/conversao-temperatura:latest
+          #      - name: Docker Build and Push
+          #        uses: docker/build-push-action@v2.7.0
+          #        with:
+          #          context: ./src
+          #          push: true
+          #          no-cache: true
+          #          tags: |
+          #            leandroaurelio/conversao-temperatura:latest
             #leandroaurelio/conversao-temperatura:v${{ github.run_number }}
-            leandroaurelio/conversor-temperatura:arm
+          #            leandroaurelio/conversor-temperatura:arm
             
   CD:
     needs: [CI]

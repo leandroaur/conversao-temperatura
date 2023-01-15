@@ -10,10 +10,4 @@ spec:
     name: conversor-temperatura-deploy
   minReplicas: 1
   maxReplicas: 10
-  metric:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageValue: 50
+  targetCPUUtilizationPercentage: 50

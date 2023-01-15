@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1 #extensions/v1beta1 (k8s)
+kind: Ingress
+metadata:
+  labels:
+    app: site-temperatura
+  name: site-temperatura-ingress #-web-ui
+  namespace: conversao-temperatura
+spec:
+  rules:
+  - host: site-temperatura.100.86.25.28.nip.io 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: conversor-temperatura-service
+            port:
+              number: 80

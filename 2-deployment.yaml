@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversor-temperatura-deploy
+  namespace: conversao-temperatura
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: site-temperatura
+  template:
+    metadata:
+      labels:
+        app: site-temperatura
+    spec:
+      containers:
+        - name: site-temperatura
+          image: leandroaurelio/conversor-temperatura:arm
+          ports:
+            - containerPort: 8080

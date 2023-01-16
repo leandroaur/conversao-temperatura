@@ -51,7 +51,10 @@ jobs:
 
       - name: Execute apply -f
         run: |-
-          kubectl apply -f 2-deployment.yaml 3-service.yaml 4-ingress.yaml 5-hpa.yaml
+          kubectl apply -f 2-deployment.yaml 
+          kubectl apply -f 3-service.yaml 
+          kubectl apply -f 4-ingress.yaml 
+          kubectl apply -f 5-hpa.yaml
 
           #      - name: Deploy to Kubernetes cluster
           #        uses: Azure/k8s-deploy@v1.5

@@ -61,4 +61,3 @@ jobs:
           #        with:
           #          images: leandroaurelio/conversor-temmperatura:arm #leandroaurelio/conversao-temperatura:v${{ github.run_number }}
           #          manifests: |-
-            .

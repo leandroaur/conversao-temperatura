@@ -23,7 +23,9 @@ jobs:
         with:
           context: ./src
           push: true
-          tags: leandroaurelio/conversor-temperatura:arm
+          tags: |
+            leandroaurelio/conversor-temperatura:arm 
+            leandroaurelio/conversor-temperatura:varm${{ github.run_number }}
             
   CD:
     needs: [CI]
@@ -44,16 +46,20 @@ jobs:
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.K8S_CONFIG_PI }}
+          
+      - name: Create namespace
+        run: |
+          namespacePresent= `kubectl get namespace | grep conversao-temperatura | wc -l`
+          if [ $namespacePresent -eq 0 ]
+          then
+            echo `kubectl create namespace conversao-temperatura`
+          fi
 
-      - name: Execute apply -f
-        run: |-
-          kubectl apply -f 2-deployment.yaml 
-          kubectl apply -f 3-service.yaml 
-          kubectl apply -f 4-ingress.yaml 
-          kubectl apply -f 5-hpa.yaml
-
-          #      - name: Deploy to Kubernetes cluster
-          #        uses: Azure/k8s-deploy@v1.5
-          #        with:
-          #          images: leandroaurelio/conversor-temmperatura:arm #leandroaurelio/conversao-temperatura:v${{ github.run_number }}
-          #          manifests: |-
+      - name: Deploy to the Kubernetes cluster
+        uses: azure/k8s-deploy@v1
+        with:
+          namespace: conversao-temperatura
+          manifests: |
+            manifests/2-deployment.yaml
+          images:
+            leandroaurelio/conversor-temperatura:varm${{ github.run_number }}

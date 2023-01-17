@@ -49,10 +49,10 @@ jobs:
           
       - name: Create namespace
         run: |
-          namespacePresent= `kubectl get namespace | grep conversao-temperatura | wc -l`
+          namespacePresent= 'kubectl get namespace | grep conversao-temperatura | wc -l'
           if [ $namespacePresent -eq 0 ]
           then
-            echo `kubectl create namespace conversao-temperatura`
+            echo 'kubectl create namespace conversao-temperatura'
           fi
 
       - name: Deploy to the Kubernetes cluster

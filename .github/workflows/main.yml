@@ -48,12 +48,8 @@ jobs:
           kubeconfig: ${{ secrets.K8S_CONFIG_PI }}
           
       - name: Create namespace
-        run: |
-          namespacePresent= 'kubectl get namespace | grep conversao-temperatura | wc -l'
-          if [ $namespacePresent -eq 0 ]
-          then
-            echo 'kubectl create namespace conversao-temperatura'
-          fi
+        run: kubectl create namespace conversao-temperatura
+        if: ( 'kubectl get namespace | grep conversao-temperatura | wc -l' == '0' )
 
       - name: Deploy to the Kubernetes cluster
         uses: azure/k8s-deploy@v1

@@ -17,7 +17,7 @@ jobs:
           context: ./src
           node-version: '14.x'
       - run: npm install
-      - run: npm ci
+        #      - run: npm ci
       - run: npm run build --if-present
       - run: npm test
 

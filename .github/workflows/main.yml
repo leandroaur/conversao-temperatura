@@ -67,5 +67,4 @@ jobs:
           manifests: |
             manifests/2-deployment.yaml
           images:
-                  #            leandroaurelio/conversor-temperatura:varm${{ github.run_number }}
-            leandroaurelio/conversor-temperatura:arm
+            leandroaurelio/conversor-temperatura:varm${{ github.run_number }}

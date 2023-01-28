@@ -21,7 +21,11 @@ jobs:
         run: |
           cd src
           npm ci
-      - run: npm run build --if-present
+      
+      - name: npm run build --if-present
+        run: |
+          cd src
+          npm run build --if-present
 
       - name: Run Node.js tests
         run: npm test
